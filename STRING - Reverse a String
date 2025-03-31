@@ -1,0 +1,85 @@
+You are given a string s, and your task is to reverse the string.
+
+Examples:
+
+Input: s = "Geeks"
+Output: "skeeG"
+Input: s = "for"
+Output: "rof"
+Input: s = "a"
+Output: "a"
+Constraints:
+1 <= s.size() <= 106
+s contains only alphabetic characters (both uppercase and lowercase).
+
+-----------------------------------------------------------------------------------------------------
+
+//{ Driver Code Starts
+// Initial Template for Java
+
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+class Driver {
+    public static void main(String args[]) throws IOException {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
+
+        while (t-- > 0) {
+            String str = read.readLine();
+            System.out.println(new Solution().reverseString(str));
+
+            System.out.println("~");
+        }
+    }
+}
+// } Driver Code Ends
+
+
+// User function Template for Java
+
+class Solution {
+    public static String reverseString(String s) {
+        // code here
+        
+        
+        //time limit exceeded O(n^2)
+        /*int n=s.length() -1;
+        String ans="";
+        for(int i=n; i>=0; i--)
+        {
+            char x=s.charAt(i);
+            ans+=x;
+        }
+        return ans;*/
+        
+        //alternative method: also time limit exceeded O(n^2)
+        /*if(s.length()==1)
+            return s;
+        if(s.length()==0)
+            return "";
+        char x=s.charAt(0);
+        char y=s.charAt(s.length() -1);
+        return y+reverseString(s.substring(1,s.length() -1))+x;*/
+        
+        /*if (s.isEmpty()) return s;
+        return reverseString(s.substring(1)) + s.charAt(0);*/
+        
+        /*using char array to avoid time wastage by creating new string each and every time
+        char st[]=new char[s.length()];
+        int j=0;
+        for(int i=s.length() -1; i>=0 && j<s.length(); i--)
+        {
+            st[j++]=s.charAt(i);
+        }
+        return new String(st);*/
+        
+        //using string builder
+        StringBuilder ans = new StringBuilder();
+        for (int i = s.length() - 1; i >= 0; i--) {
+            ans.append(s.charAt(i)); // O(1) operation
+        }
+        return ans.toString(); // O(n)
+    }
+}
