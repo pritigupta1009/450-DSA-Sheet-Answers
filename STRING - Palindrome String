@@ -1,0 +1,66 @@
+You are given a string s. Your task is to determine if the string is a palindrome. A string is considered a palindrome if it reads the same forwards and backwards.
+
+Examples :
+
+Input: s = "abba"
+Output: true
+Explanation: "abba" reads the same forwards and backwards, so it is a palindrome.
+Input: s = "abc" 
+Output: false
+Explanation: "abc" does not read the same forwards and backwards, so it is not a palindrome.
+Input: s = "a"
+Output: true
+Explanation: A single-character string is always a palindrome.
+Input: s = "acbca"
+Output: true
+Explanation: "acbca" reads the same forwards and backwards, so it is a palindrome.
+Constraints:
+1 ≤ s.size() ≤ 106
+The string s contains only lowercase letters (a-z).
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//{ Driver Code Starts
+import java.io.*;
+
+class GFG {
+    public static void main(String args[]) throws IOException {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
+        while (t-- > 0) {
+            String s = read.readLine(); // Use lowercase 's'
+
+            Solution ob = new Solution();
+            if (ob.isPalindrome(s)) // Check palindrome
+                System.out.println("true");
+            else
+                System.out.println("false");
+            System.out.println("~");
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+// User function Template for Java
+
+class Solution {
+    boolean isPalindrome(String s) {
+        // code here
+        
+        char st[]=new char[s.length()];
+        int j=0;
+        for(int i=s.length() -1; i>=0 && j<s.length(); i--)
+        {
+            st[j++]=s.charAt(i);
+        }
+        String ans = new String(st);
+        //System.out.println(s);
+        //System.out.println(ans);
+        if(ans.equals(s))
+            return true;
+        else
+            return false;
+    }
+};
