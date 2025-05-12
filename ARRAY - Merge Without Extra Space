@@ -76,7 +76,8 @@ class Solution {
         
         int n=a.length;
         int m=b.length;
-        ArrayList<Integer> list = new ArrayList<>();
+        // using arraylist
+        /*ArrayList<Integer> list = new ArrayList<>();
         for(int i=0; i<n; i++)
         {
             list.add(a[i]);
@@ -93,6 +94,47 @@ class Solution {
         for(int i=0; i<m; i++)
         {
             b[i]=list.remove(0);
+        }*/
+        
+        
+        //alternative way : GAP method
+        int len = m+n;
+        int gap = (len/2) + (len%2);
+        while(gap>0)
+        {
+            int left = 0;
+            int right = left+gap;
+            while(right < len)
+            {
+                if(left<n && right>=n) //left in array a and right in array b
+                {
+                    swapIfGreater(a, b, left, right-n);
+                }
+                else if(left>=n) //left and right both in array b : (left>=n && right>=n)
+                {
+                    swapIfGreater(b, b, left-n, right-n);
+                }
+                else //left and right both in array a : (left<n && right<n)
+                {
+                    swapIfGreater(a, a, left, right);
+                }
+                left++;
+                right++;
+            }
+            if(gap == 1)
+                break;
+            gap = (gap/2) + (gap%2);
+        }
+    }
+    
+    public void swapIfGreater(int a[], int b[], int ind1, int ind2)
+    {
+        if(a[ind1] > b[ind2])
+        {
+            //swap them
+            int temp = a[ind1];
+            a[ind1] = b[ind2];
+            b[ind2] = temp;
         }
     }
 }
